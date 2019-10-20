@@ -9,10 +9,12 @@ jdk:
 - openjdk11
 
 install: true
-
+    
 addons:
   sonarcloud:
-    organization: "qsestest"
-    
+    organization: "qsestest" # the key of the org you chose at step #3
+    token: $SONAR_TOKEN
+      
 script:
-  - sonar-scanner
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=qsestest_WebGoat
